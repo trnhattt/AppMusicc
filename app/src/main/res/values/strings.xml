@@ -14,5 +14,9 @@
     <string name="forget_password">Forget Password</string>
     <string name="nh_p_email_c_a_b_n_x_c_nh_n">Nhập Email của bạn để xác nhận</string>
     <string name="quay_l_i">Quay Lại</string>
+    <string name="setting">Setting</string>
+    <string name="open_nav">Open Navigation Drawer</string>
+    <string name="close_nav">Close Navigation Drawer</string>
+
 
 </resources>

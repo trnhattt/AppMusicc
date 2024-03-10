@@ -13,6 +13,7 @@ import com.example.appmusic.R;
 public class MainActivity extends AppCompatActivity {
     private FrameLayout fragmentHolder;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

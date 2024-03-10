@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginBottom="24dp"
-        android:text="PlayList MTP"
+        android:text="PlayList Name"
         android:textColor="@color/endTransparent"
         android:textSize="25dp"
         android:textStyle="bold"

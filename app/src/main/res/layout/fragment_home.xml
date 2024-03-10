@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#111E6A"
+    android:id="@+id/home"
     tools:context=".Fragment.HomeFragment">
 
 
@@ -12,6 +13,7 @@
         android:id="@+id/slider"
         android:layout_width="0dp"
         android:layout_height="250dp"
+        app:layout_constraintBottom_toTopOf="@+id/slider_indicator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,15 +21,15 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/slider_indicator"
-        app:tabIndicatorHeight="0dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="#111E6A"
-        app:tabBackground="@drawable/slider_indicator"
-        app:tabGravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/slider"
+        app:tabBackground="@drawable/slider_indicator"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp"
         app:tabTextColor="@color/white">
 
 
