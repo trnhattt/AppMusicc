@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ public class SignInFragment extends Fragment {
     private FrameLayout frameLayout;
     private EditText email;
     private EditText password;
+    private ProgressBar progressBar;
     private Button signInButton;
     private FirebaseAuth mAuth;
 
@@ -49,6 +51,7 @@ public class SignInFragment extends Fragment {
 
         email = view.findViewById(R.id.email);
         password = view.findViewById(R.id.password);
+        progressBar = view.findViewById(R.id.progressBar2);
         signInButton = view.findViewById(R.id.signInButton);
 
         mAuth = FirebaseAuth.getInstance();

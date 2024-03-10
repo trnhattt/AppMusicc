@@ -16,15 +16,23 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.appmusic.Activity.MainActivity;
 import com.example.appmusic.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class SignUpFragment extends Fragment {
@@ -34,8 +42,10 @@ public class SignUpFragment extends Fragment {
     private EditText email;
     private EditText password;
     private EditText confirmPassword;
+    private ProgressBar progressBar;
     private Button signUpButton;
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
 
     @Override
@@ -49,9 +59,11 @@ public class SignUpFragment extends Fragment {
         email = view.findViewById(R.id.email);
         password = view.findViewById(R.id.password);
         confirmPassword = view.findViewById(R.id.confirmPassword);
+        progressBar = view.findViewById(R.id.progressBar3);
         signUpButton = view.findViewById(R.id.signUpButton);
 
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
         return view;
     }
 
@@ -148,9 +160,28 @@ public class SignUpFragment extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()){
-                                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                                    getActivity().startActivity(intent);
-                                    getActivity().finish();
+                                    Map<String, Object> user = new HashMap<>();
+                                    user.put("userName",userName.getText().toString());
+                                    user.put("emailID",email.getText().toString());
+                                    db.collection("users").document(task.getResult().getUser().getUid())
+                                            .set(user)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void unused) {
+                                                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                                                    getActivity().startActivity(intent);
+                                                    getActivity().finish();
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Toast.makeText(getContext(), e.getMessage(),Toast.LENGTH_SHORT).show();
+                                                    signUpButton.setEnabled(true);
+                                                    signUpButton.setTextColor(getResources().getColor(R.color.white));
+                                                }
+                                            });
+
                                 }
                                 else {
                                     Toast.makeText(getContext(), task.getException().getMessage(),Toast.LENGTH_SHORT).show();

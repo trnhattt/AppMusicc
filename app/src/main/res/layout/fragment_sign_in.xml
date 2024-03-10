@@ -7,6 +7,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.SignInFragment">
 
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/endColor"
+        app:layout_constraintEnd_toEndOf="@+id/email"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="@+id/email"
+        app:layout_constraintTop_toBottomOf="@+id/email" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
@@ -109,15 +122,15 @@
         android:id="@+id/signInButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        app:backgroundTint="@null"
+        android:layout_marginTop="180dp"
         android:background="@drawable/gradient_background"
         android:text="@string/sign_in"
         android:textAllCaps="false"
-        android:textSize="20sp"
         android:textColor="@color/white"
+        android:textSize="20sp"
+        app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="@+id/password"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/password"
         app:layout_constraintTop_toBottomOf="@+id/password" />
 

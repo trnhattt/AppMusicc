@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.appmusic.R;
@@ -29,6 +30,7 @@ public class ResetPassword extends Fragment {
     private FrameLayout frameLayout;
     private EditText email;
     private TextView responseMessage;
+    private ProgressBar progressBar;
     private Button resetButton;
     private FirebaseAuth mAuth;
 
@@ -41,6 +43,7 @@ public class ResetPassword extends Fragment {
 
         email = view.findViewById(R.id.email);
         responseMessage = view.findViewById(R.id.responseMessage);
+        progressBar = view.findViewById(R.id.progressBar);
         resetButton = view.findViewById(R.id.resetButton);
         mAuth = FirebaseAuth.getInstance();
         return view;
@@ -81,6 +84,7 @@ public class ResetPassword extends Fragment {
 
     private void resetPassword() {
         if(email.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")){
+            progressBar.setVisibility(View.VISIBLE);
             mAuth.sendPasswordResetEmail(email.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
@@ -93,6 +97,8 @@ public class ResetPassword extends Fragment {
                         responseMessage.setText("Xảy ra lỗi khi gửi đến Email");
                         responseMessage.setTextColor(getResources().getColor(R.color.purple_200));
                     }
+                    progressBar.setVisibility(View.INVISIBLE);
+                    responseMessage.setVisibility(View.VISIBLE);
                 }
             });
         }
